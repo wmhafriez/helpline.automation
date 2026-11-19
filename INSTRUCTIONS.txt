@@ -1,0 +1,50 @@
+HSC DIGITAL REGISTRATION + HELPLINE — LOCAL TEST SETUP
+=====================================================
+
+This ZIP contains the complete registration website and the integrated Helpline Logbook. Follow these steps in order.
+
+1. INSTALL THE TOOLS
+   - Install Python 3.11 or newer.
+   - Install Visual Studio Code.
+   - In VS Code, install the “Live Server” extension.
+   - Internet access is required for Python packages and the MongoDB Atlas connection.
+
+2. OPEN THE PROJECT
+   - Extract this ZIP.
+   - In VS Code, choose File > Open Folder and select HSC_Registration_Helpline_Localhost.
+
+3. START THE BACKEND
+   - Open Terminal > New Terminal in VS Code. Run:
+
+     cd backend-python-old
+     py -m venv .venv
+     .\.venv\Scripts\python.exe -m pip install --upgrade pip
+     .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+     .\.venv\Scripts\python.exe -m uvicorn server:app --reload --host 127.0.0.1 --port 5000
+
+   - Keep this terminal running.
+   - Check the API at http://127.0.0.1:5000/api/health . It should show {"message":"ok"}.
+
+4. OPEN THE WEBSITE
+   - In VS Code Explorer, open frontend/public/admin-login.html.
+   - Right-click the file and select “Open with Live Server”.
+   - Sign in using ADMIN_USERNAME and ADMIN_PASSWORD from backend-python-old/.env.
+   - Open the dashboard menu and choose “Helpline Logbook”.
+
+5. TEST THE HELPLINE
+   - Try the Problem Log, Car Clamping, Accident, and Oil Leak tabs.
+   - The one-time import button imports 157 sample legacy rows. It writes to the test database below; use it only if you want those sample rows in your test data.
+   - To test photo uploads, use image files smaller than 8 MB.
+
+TEST SAFEGUARDS AND CONFIGURATION
+---------------------------------
+- MongoDB uses the supplied Atlas cluster but the separate database name hispeedcity_local_test. The existing hispeedcity database is not selected by this package.
+- MongoDB Atlas must allow your current public IP under Network Access. If the connection times out, check that setting.
+- Helpline photos upload under the Cloudinary folder hispeedcity/helpline_test. These are real uploads to your Cloudinary account and can use its storage quota.
+- Resend email sending is disabled in this local package so approval testing cannot email real customers.
+- The .env file contains credentials. Do not share this ZIP or commit .env to Git. Rotate any credentials that should no longer be used.
+- The newer Node backend folder is included from the original project, but this combined registration and helpline site runs on backend-python-old/ with FastAPI.
+
+STOPPING THE APP
+----------------
+Press Ctrl+C in the backend terminal. Close the Live Server tab when finished.

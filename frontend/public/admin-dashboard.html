@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+    <style>html,body{background:#F5F5F5;margin:0;padding:0;}input:invalid,input:required{box-shadow:none!important;outline:none!important;}</style>
+</head>
+<body>
+    <div class="page admin-page">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <span class="logo-text">Hi<span class="logo-highlight">speedcity</span></span>
+                    <span class="admin-badge">Admin</span>
+                </div>
+                <button type="button" class="admin-menu-button" id="adminMenuButton" aria-controls="adminDashboardDrawer" aria-expanded="false" data-testid="admin-menu-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="admin-drawer-overlay" id="adminDrawerOverlay" hidden></div>
+        <aside class="admin-drawer" id="adminDashboardDrawer" aria-hidden="true" aria-label="Admin dashboard menu">
+            <div class="admin-drawer__header">
+                <div>
+                    <p class="admin-drawer__eyebrow">Admin Menu</p>
+                    <h2>Quick Actions</h2>
+                </div>
+                <button type="button" class="admin-drawer__close" id="adminDrawerClose" aria-label="Close menu">×</button>
+            </div>
+            <div class="admin-drawer__body">
+                <button type="button" class="admin-drawer__action is-primary" onclick="window.location.href='admin-applications.html'" data-testid="view-applications-btn">View Applications</button>
+                <button type="button" class="admin-drawer__action" onclick="window.location.href='admin-renewals.html'" data-testid="view-renewals-btn">Renewal Management</button>
+                <button type="button" class="admin-drawer__action" onclick="window.location.href='admin-parking-types.html'" data-testid="view-parking-types-btn">Parking Type Management</button>
+                <button type="button" class="admin-drawer__action" onclick="window.location.href='admin-helpline-logbook.html'" data-testid="view-helpline-logbook-btn">Helpline Logbook</button>
+                <button type="button" class="admin-drawer__action" onclick="window.location.href='admin-change-password.html'" data-testid="change-password-btn">Change Password</button>
+                <a href="index.html" class="admin-drawer__action is-logout" data-testid="logout-link">Logout</a>
+            </div>
+        </aside>
+
+        <div class="container">
+            <div class="dashboard">
+                <h1 data-testid="dashboard-title">Dashboard</h1>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon total">📄</div>
+                        <div class="stat-content">
+                            <h3 id="totalApplications" data-testid="total-applications">0</h3>
+                            <p>Total Applications</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon pending">⏳</div>
+                        <div class="stat-content">
+                            <h3 id="pendingCount" data-testid="pending-count">0</h3>
+                            <p>Pending</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon approved">✓</div>
+                        <div class="stat-content">
+                            <h3 id="approvedCount" data-testid="approved-count">0</h3>
+                            <p>Approved</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon rejected">✕</div>
+                        <div class="stat-content">
+                            <h3 id="rejectedCount" data-testid="rejected-count">0</h3>
+                            <p>Rejected</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon total">↻</div>
+                        <div class="stat-content">
+                            <h3 id="renewalCount" data-testid="renewal-count">0</h3>
+                            <p>Renewal Requests</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>

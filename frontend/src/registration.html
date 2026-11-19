@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Season Parking Registration</title>
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+    <style>html,body{background:#F5F5F5;margin:0;padding:0;}input:invalid,input:required{box-shadow:none!important;outline:none!important;}</style>
+</head>
+<body>
+    <div class="page">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+                    <span class="logo-text">Hi<span class="logo-highlight">speedcity</span></span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1 data-testid="registration-form-title">Season Parking Registration Form</h1>
+                    <p class="form-note">(Update will be within 48 hours)</p>
+                </div>
+
+                <form id="registrationForm" data-testid="registration-form">
+                    <div class="form-section">
+                        <h2>Personal Information</h2>
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required data-testid="full-name-input">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number *</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" required data-testid="phone-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Customer Email *</label>
+                                <input type="email" id="email" name="email" required placeholder="name@example.com" data-testid="email-input">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="companyName">Company Name *</label>
+                                <input type="text" id="companyName" name="companyName" required data-testid="company-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="staffId">Staff ID</label>
+                                <input type="text" id="staffId" name="staffId" maxlength="20" style="max-width:220px;" data-testid="staff-id-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Number of Vehicles</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="numberOfCars">How many cars do you want to register? *</label>
+                                <select id="numberOfCars" name="numberOfCars" required data-testid="number-of-cars-select" class="form-select">
+                                    <option value="">Select number of cars</option>
+                                    <option value="1">1 Car</option>
+                                    <option value="2">2 Cars</option>
+                                    <option value="3">3 Cars</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="vehiclesContainer"></div>
+
+                    <div class="form-section parking-subscription-section" id="parkingSection" style="display:none;">
+                        <div class="parking-section-header">
+                            <div>
+                                <h2>Parking Subscription</h2>
+                                <p class="parking-section-subtitle">Choose the plan that best matches your parking needs.</p>
+                            </div>
+                        </div>
+                        <div class="parking-plans" role="radiogroup" aria-label="Parking Type">
+                            <label class="parking-plan-card parking-plan-card--non-reserved">
+                                <input type="radio" name="parkingType" value="Non Reserved" data-price="159" data-testid="parking-type-non-reserved">
+                                <div class="parking-plan-card__glow"></div>
+                                <div class="parking-plan-card__top">
+                                    <div class="parking-plan-card__icon" aria-hidden="true"><span>◌</span></div>
+                                    <div class="parking-plan-card__badge">Best for flexible monthly users</div>
+                                </div>
+                                <div class="parking-plan-card__content">
+                                    <div class="parking-plan-card__title-row">
+                                        <h3>Non-Reserved Parking</h3>
+                                        <span class="parking-plan-card__availability is-available">Available</span>
+                                    </div>
+                                    <p class="parking-plan-card__price">RM159<span>/month</span></p>
+                                    <ul class="parking-plan-card__benefits">
+                                        <li>Low-cost monthly access</li>
+                                        <li>Flexible parking spot selection</li>
+                                        <li>Ideal for occasional drivers</li>
+                                    </ul>
+                                </div>
+                                <div class="parking-plan-card__footer"><span class="parking-plan-card__button">Subscribe</span></div>
+                            </label>
+
+                            <label class="parking-plan-card parking-plan-card--reserved">
+                                <input type="radio" name="parkingType" value="Reserved" data-price="212" data-testid="parking-type-reserved">
+                                <div class="parking-plan-card__glow"></div>
+                                <div class="parking-plan-card__top">
+                                    <div class="parking-plan-card__icon" aria-hidden="true"><span>◉</span></div>
+                                    <div class="parking-plan-card__badge parking-plan-card__badge--highlight">Most popular choice</div>
+                                </div>
+                                <div class="parking-plan-card__content">
+                                    <div class="parking-plan-card__title-row">
+                                        <h3>Reserved Parking</h3>
+                                        <span class="parking-plan-card__availability is-limited">Limited</span>
+                                    </div>
+                                    <p class="parking-plan-card__price">RM212<span>/month</span></p>
+                                    <ul class="parking-plan-card__benefits">
+                                        <li>Dedicated reserved parking space</li>
+                                        <li>Better convenience and reliability</li>
+                                        <li>Perfect for daily commuters</li>
+                                    </ul>
+                                </div>
+                                <div class="parking-plan-card__footer"><span class="parking-plan-card__button">Subscribe</span></div>
+                            </label>
+
+                            <label class="parking-plan-card parking-plan-card--premium">
+                                <input type="radio" name="parkingType" value="Premium" data-price="318" data-testid="parking-type-premium">
+                                <div class="parking-plan-card__glow"></div>
+                                <div class="parking-plan-card__top">
+                                    <div class="parking-plan-card__icon" aria-hidden="true"><span>★</span></div>
+                                    <div class="parking-plan-card__badge">Premium access & priority</div>
+                                </div>
+                                <div class="parking-plan-card__content">
+                                    <div class="parking-plan-card__title-row">
+                                        <h3>Premium Parking</h3>
+                                        <span class="parking-plan-card__availability is-limited">Exclusive</span>
+                                    </div>
+                                    <p class="parking-plan-card__price">RM318<span>/month</span></p>
+                                    <ul class="parking-plan-card__benefits">
+                                        <li>Premium parking experience</li>
+                                        <li>Priority access and better positioning</li>
+                                        <li>Best value for frequent users</li>
+                                    </ul>
+                                </div>
+                                <div class="parking-plan-card__footer"><span class="parking-plan-card__button">Subscribe</span></div>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Subscription Period *</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="subscriptionPeriod" value="Monthly" data-multiplier="1" data-testid="subscription-monthly">
+                                        <span>Monthly</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="subscriptionPeriod" value="Quarterly" data-multiplier="3" data-testid="subscription-quarterly">
+                                        <span>Quarterly</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="subscriptionPeriod" value="Yearly" data-multiplier="12" data-testid="subscription-yearly">
+                                        <span>Yearly</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'" data-testid="back-btn">Back to Home</button>
+                        <button type="submit" class="btn btn-primary" data-testid="next-btn">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="registration.js"></script>
+</body>
+</html>

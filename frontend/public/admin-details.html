@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Details</title>
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+    <style>html,body{background:#F5F5F5;margin:0;padding:0;}input:invalid,input:required{box-shadow:none!important;outline:none!important;}</style>
+</head>
+<body>
+    <div class="page admin-page">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo" onclick="window.location.href='admin-dashboard.html'" style="cursor:pointer;">
+                    <span class="logo-text">Hi<span class="logo-highlight">speedcity</span></span>
+                    <span class="admin-badge">Admin</span>
+                </div>
+                <a href="index.html" class="logout-link" data-testid="logout-link">Logout</a>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="application-details">
+                <div class="details-header">
+                    <h1 data-testid="details-title">Application Details</h1>
+                    <div class="details-actions">
+                        <button class="btn btn-secondary" onclick="window.location.href='admin-applications.html'" data-testid="back-list-btn">Back to List</button>
+                        <button class="btn btn-secondary" id="adminDownloadFormBtn" data-testid="admin-download-form-btn">Download Submission Form</button>
+                    </div>
+                </div>
+
+                <div class="details-container" id="detailsContainer">
+                    <!-- Details will be populated here -->
+                </div>
+
+                <div class="form-actions" id="actionButtons" style="display:none;">
+                    <button type="button" class="btn btn-danger" id="rejectBtn" data-testid="reject-btn">Reject</button>
+                    <button type="button" class="btn btn-success" id="approveBtn" data-testid="approve-btn">Approve</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="approval-modal" id="applicationApprovalModal" hidden>
+            <div class="approval-modal__backdrop" id="applicationApprovalBackdrop"></div>
+            <div class="approval-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="applicationApprovalTitle">
+                <div class="approval-modal__header">
+                    <div>
+                        <p class="approval-modal__eyebrow">Admin Approval Form</p>
+                        <h2 id="applicationApprovalTitle">Approve New Registration</h2>
+                    </div>
+                    <button type="button" class="approval-modal__close" id="applicationApprovalCloseBtn" aria-label="Close approval form">×</button>
+                </div>
+
+                <div class="approval-modal__body">
+                    <div class="approval-modal__section">
+                        <h3>Registration Summary</h3>
+                        <div class="detail-row"><span class="detail-label">Customer Name:</span><span class="detail-value" id="approvalCustomerName">-</span></div>
+                        <div class="detail-row"><span class="detail-label">Customer Email:</span><span class="detail-value" id="approvalCustomerEmail">-</span></div>
+                        <div class="detail-row"><span class="detail-label">Parking Type:</span><span class="detail-value" id="approvalParkingType">-</span></div>
+                        <div class="detail-row"><span class="detail-label">Subscription Period:</span><span class="detail-value" id="approvalSubscriptionPeriod">-</span></div>
+                        <div class="detail-row"><span class="detail-label">Vehicle Plate Number(s):</span><span class="detail-value" id="approvalVehiclePlates">-</span></div>
+                        <div class="detail-row"><span class="detail-label">Total Amount:</span><span class="detail-value" id="approvalTotalAmount">RM 0</span></div>
+                    </div>
+
+                    <form id="applicationApprovalForm" class="approval-modal__form">
+                        <div class="approval-modal__section">
+                            <h3>Receipt Information</h3>
+                            <p class="approval-modal__note">The receipt fields will be generated automatically from the registration details.</p>
+                        </div>
+
+                        <div class="approval-modal__actions">
+                            <button type="button" class="btn btn-secondary" id="approvalCancelBtn">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="approvalConfirmBtn">Confirm Approval</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="pdf-utils.js"></script>
+    <script src="admin-details.js"></script>
+</body>
+</html>
